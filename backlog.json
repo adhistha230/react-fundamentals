@@ -1,0 +1,54 @@
+{
+  "repo": "react-fundamentals",
+  "teaches": "JSX, props, state, lists, controlled forms, conditional rendering",
+  "projects": [
+    {
+      "id": "01-counter-with-steps",
+      "name": "Counter with Steps",
+      "difficulty": "S",
+      "teaches": ["useState", "derived state", "clamping"],
+      "features": ["configurable step size", "0-100 clamp", "reset", "disabled boundaries"],
+      "status": "done"
+    },
+    {
+      "id": "02-tip-calculator",
+      "name": "Tip Calculator",
+      "difficulty": "S",
+      "teaches": ["controlled numeric inputs", "number formatting"],
+      "features": ["bill + tip % + split", "per-person total", "currency formatting"],
+      "status": "pending"
+    },
+    {
+      "id": "03-accordion-faq",
+      "name": "Accordion FAQ",
+      "difficulty": "S",
+      "teaches": ["conditional rendering", "single-open logic"],
+      "features": ["one panel open at a time", "allow-all-closed", "aria-expanded"],
+      "status": "pending"
+    },
+    {
+      "id": "04-tabs-component",
+      "name": "Tabs Component",
+      "difficulty": "S",
+      "teaches": ["index state", "keyboard navigation"],
+      "features": ["arrow-key navigation", "home/end keys", "roving tabindex"],
+      "status": "pending"
+    },
+    {
+      "id": "05-star-rating",
+      "name": "Star Rating",
+      "difficulty": "S",
+      "teaches": ["hover vs committed state", "radio semantics"],
+      "features": ["hover preview", "committed value", "keyboard selectable", "half-stars"],
+      "status": "pending"
+    },
+    {
+      "id": "06-signup-form-validation",
+      "name": "Signup Form Validation",
+      "difficulty": "M",
+      "teaches": ["controlled forms", "per-field validation", "error surfacing"],
+      "features": ["validate on blur", "submit gating", "aria-describedby errors", "password rules"],
+      "status": "pending"
+    }
+  ]
+}
