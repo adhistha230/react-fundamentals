@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { buttonGhost, buttonPrimary, card, input, subtle } from "../../shared/ui.js";
+import { buttonGhost, buttonPrimary, card, input, statValue, subtle } from "../../shared/ui.js";
 
 const MIN = 0;
 const MAX = 100;
@@ -26,10 +26,7 @@ export default function Counter() {
     <div className={`${card} space-y-6`}>
       <div>
         <p className={subtle}>Count</p>
-        <p
-          aria-live="polite"
-          className="mt-1 text-5xl font-semibold tabular-nums text-slate-900"
-        >
+        <p aria-live="polite" className={`${statValue} mt-1`}>
           {count}
         </p>
       </div>
