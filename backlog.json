@@ -16,7 +16,7 @@
       "difficulty": "S",
       "teaches": ["controlled numeric inputs", "number formatting"],
       "features": ["bill + tip % + split", "per-person total", "currency formatting"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "03-accordion-faq",

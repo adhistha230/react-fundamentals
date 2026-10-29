@@ -12,6 +12,7 @@ Part of a six-repo set — see also `react-hooks`, `react-api-projects`,
 | # | Project | Size | Demonstrates |
 |---|---------|------|--------------|
 | 01 | [Counter with Steps](src/projects/01-counter-with-steps/) | S | `useState`, derived state, clamping |
+| 02 | [Tip Calculator](src/projects/02-tip-calculator/) | S | controlled numeric inputs, integer-cent money math |
 
 ## Stack
 
