@@ -110,8 +110,9 @@ describe("Tip calculator", () => {
 
     expect(rowValue("Total")).toBe("$10.00");
     expect(perPerson()).toBe("$3.34");
-    expect(screen.getByText(/1 person pays \$3\.34, the other ones pay \$3\.33/i))
-      .toBeInTheDocument();
+    expect(
+      screen.getByText(/1 person pays \$3\.34, the others pay \$3\.33/i),
+    ).toBeInTheDocument();
     // 1 x 334 + 2 x 333 = 1000. No cent lost, none invented.
   });
 

@@ -163,7 +163,7 @@ export default function TipCalculator() {
         {extra > 0 && (
           <p className={`${subtle} mt-2`}>
             Uneven split: {extra} {extra === 1 ? "person pays" : "people pay"}{" "}
-            {money(high)}, the other {people - extra === 1 ? "one pays" : "ones pay"}{" "}
+            {money(high)}, the {people - extra === 1 ? "other pays" : "others pay"}{" "}
             {money(low)}.
           </p>
         )}
