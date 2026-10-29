@@ -24,7 +24,7 @@
       "difficulty": "S",
       "teaches": ["conditional rendering", "single-open logic"],
       "features": ["one panel open at a time", "allow-all-closed", "aria-expanded"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "04-tabs-component",
