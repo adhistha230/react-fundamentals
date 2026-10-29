@@ -61,13 +61,22 @@ export default function AccordionFaq() {
 
         return (
           <div key={faq.id}>
+            {/* A real heading, so screen reader users can jump between questions with
+                heading navigation instead of tabbing through every button. */}
             <h3>
               <button
+                id={`${faq.id}-header`}
                 className="flex w-full items-center justify-between gap-4 px-6 py-4 text-left
-                  text-sm font-medium text-slate-900 transition hover:bg-slate-50"
+                  text-sm font-medium text-slate-900 transition hover:bg-slate-50
+                  focus-visible:bg-slate-50 focus-visible:outline-2
+                  focus-visible:-outline-offset-2 focus-visible:outline-slate-400"
+                aria-expanded={isOpen}
+                aria-controls={`${faq.id}-panel`}
                 onClick={() => toggle(faq.id)}
               >
                 {faq.question}
+                {/* Decorative: aria-expanded already conveys the state, so announcing
+                    "plus" on top of "collapsed" would just be noise. */}
                 <span aria-hidden="true" className="text-lg leading-none text-slate-400">
                   {isOpen ? "−" : "+"}
                 </span>
@@ -77,7 +86,12 @@ export default function AccordionFaq() {
             {/* Unmounted rather than hidden while closed -- see this project's README for
                 why that is the right call here and when it is not. */}
             {isOpen && (
-              <div className="px-6 pb-5">
+              <div
+                id={`${faq.id}-panel`}
+                role="region"
+                aria-labelledby={`${faq.id}-header`}
+                className="px-6 pb-5"
+              >
                 <p className={subtle}>{faq.answer}</p>
               </div>
             )}
