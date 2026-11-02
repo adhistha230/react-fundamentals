@@ -16,6 +16,20 @@ export const heading = "text-2xl font-semibold tracking-tight text-slate-900";
 export const subtle = "text-sm text-slate-500";
 export const statValue = "text-5xl font-semibold tabular-nums text-slate-900";
 
+// Tabs. The idle and selected variants differ only in the bottom border and text colour,
+// so they share a base and the component picks one — no conditional class soup inline.
+export const tabList = "flex gap-1 border-b border-slate-200";
+
+const tabBase =
+  "-mb-px border-b-2 px-4 py-2 text-sm font-medium transition " +
+  "focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-slate-400";
+
+export const tabIdle = `${tabBase} border-transparent text-slate-500 hover:text-slate-900`;
+export const tabSelected = `${tabBase} border-slate-900 text-slate-900`;
+export const tabPanel =
+  "px-1 py-5 focus-visible:outline-2 focus-visible:-outline-offset-2 " +
+  "focus-visible:outline-slate-400";
+
 // A segmented control built on real radio inputs. The input is visually hidden but still
 // focused and tabbed to, so arrow-key selection within the group is the platform's job
 // rather than ours. `peer` only reaches forward, so the label must follow its input.
