@@ -32,7 +32,7 @@
       "difficulty": "S",
       "teaches": ["index state", "keyboard navigation"],
       "features": ["arrow-key navigation", "home/end keys", "roving tabindex"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "05-star-rating",
