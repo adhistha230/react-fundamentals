@@ -2,6 +2,7 @@ import Counter from "./01-counter-with-steps/index.jsx";
 import TipCalculator from "./02-tip-calculator/index.jsx";
 import AccordionFaq from "./03-accordion-faq/index.jsx";
 import TabsComponent from "./04-tabs-component/index.jsx";
+import StarRating from "./05-star-rating/index.jsx";
 
 // Single source of truth for the index page and the router. Adding a project means
 // adding one entry here.
@@ -33,5 +34,12 @@ export const projects = [
     difficulty: "S",
     teaches: ["index state", "roving tabindex", "keyboard navigation"],
     Component: TabsComponent,
+  },
+  {
+    slug: "05-star-rating",
+    name: "Star Rating",
+    difficulty: "S",
+    teaches: ["hover vs committed state", "radio semantics", "half steps"],
+    Component: StarRating,
   },
 ];

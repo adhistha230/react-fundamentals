@@ -30,12 +30,24 @@ export const tabPanel =
   "px-1 py-5 focus-visible:outline-2 focus-visible:-outline-offset-2 " +
   "focus-visible:outline-slate-400";
 
-// A segmented control built on real radio inputs. The input is visually hidden but still
-// focused and tabbed to, so arrow-key selection within the group is the platform's job
-// rather than ours. `peer` only reaches forward, so the label must follow its input.
-export const segmentInput = "peer sr-only";
+// A real input, visually hidden but still focused and tabbed to, so arrow-key selection
+// within a radio group is the platform's job rather than ours. `peer` only reaches forward,
+// so the label it styles must follow it, and the pair needs its own wrapper element —
+// `peer-*` is a general-sibling selector, and two pairs under one parent cross-match.
+export const hiddenInput = "peer sr-only";
+
+// A segmented control built on real radio inputs.
+export const segmentInput = hiddenInput;
 export const segmentLabel =
   "inline-block cursor-pointer rounded-lg border border-slate-300 px-3 py-2 text-sm " +
   "font-medium text-slate-700 transition hover:bg-slate-100 " +
   "peer-checked:border-slate-900 peer-checked:bg-slate-900 peer-checked:text-white " +
   "peer-focus-visible:ring-2 peer-focus-visible:ring-slate-400";
+
+// Star rating. The hit area is a transparent label stretched over half a star; the focus
+// ring lands on it rather than on the whole star, so it shows which half is focused.
+export const starHit =
+  "block h-full w-full cursor-pointer rounded-sm " +
+  "peer-focus-visible:ring-2 peer-focus-visible:ring-slate-400";
+export const starTrack = "text-slate-200";
+export const starFill = "text-amber-400";
