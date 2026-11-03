@@ -23,7 +23,17 @@ function Star({ className }) {
 }
 
 export default function StarRating() {
+  // Two separate pieces of state, and that separation is the whole widget. `value` is what
+  // the user has committed; `preview` is where the pointer happens to be. Collapsing them
+  // into one -- setting the rating on hover -- means the last star the mouse crossed on its
+  // way off the row becomes the answer.
   const [value, setValue] = useState(0);
+  const [preview, setPreview] = useState(null);
+
+  // Null means "not hovering", which is distinct from hovering a rating of zero -- a state
+  // that cannot occur, since the lowest input is 0.5. `??` keeps it that way anyway: `||`
+  // would quietly fall through to `value` if a zero preview were ever introduced.
+  const shown = preview ?? value;
 
   // The group name has to be unique per instance, or two ratings on one page become one
   // radio group and selecting in either clears the other.
@@ -31,7 +41,11 @@ export default function StarRating() {
 
   return (
     <div className={`${card} space-y-6`}>
-      <fieldset>
+      {/* The preview is cleared on the fieldset, not on each label. Moving between two
+          halves fires a leave for the one and an enter for the other in an order we would
+          otherwise have to reason about; letting the group own the exit makes the order
+          irrelevant. */}
+      <fieldset onMouseLeave={() => setPreview(null)}>
         <legend className={subtle}>Rate this</legend>
 
         <div className="mt-2 flex gap-1">
@@ -44,9 +58,9 @@ export default function StarRating() {
                   what makes a half star read as half of this star and not a smaller one. */}
               <span
                 aria-hidden="true"
-                data-star-fill={fillPercent(index, value)}
+                data-star-fill={fillPercent(index, shown)}
                 className="absolute left-0 top-0 h-10 overflow-hidden"
-                style={{ width: `${fillPercent(index, value)}%` }}
+                style={{ width: `${fillPercent(index, shown)}%` }}
               >
                 <Star className={starFill} />
               </span>
@@ -70,7 +84,11 @@ export default function StarRating() {
                   />
                   {/* Empty to the eye -- the stars underneath are the visuals. The text is
                       the input's accessible name, so it has to be present, not decorative. */}
-                  <label htmlFor={`${groupName}-${starValue}`} className={starHit}>
+                  <label
+                    htmlFor={`${groupName}-${starValue}`}
+                    className={starHit}
+                    onMouseEnter={() => setPreview(starValue)}
+                  >
                     <span className="sr-only">{labelFor(starValue)}</span>
                   </label>
                 </span>
@@ -80,12 +98,13 @@ export default function StarRating() {
         </div>
       </fieldset>
 
-      {/* Hidden from assistive tech: the radio group already announces the rating on
-          selection, so a second copy here would only ever be a duplicate reading. */}
+      {/* Hidden from assistive tech on purpose. The radio group already announces the
+          rating on selection, so a live region here would double every reading -- and the
+          preview it tracks is a pointer-only affordance with nothing to announce. */}
       <div aria-hidden="true">
-        <p className={subtle}>Your rating</p>
+        <p className={subtle}>{preview === null ? "Your rating" : "Preview"}</p>
         <p className={`${statValue} mt-1`}>
-          {value}
+          {shown}
           <span className="ml-2 text-base font-normal text-slate-400">of {STARS}</span>
         </p>
       </div>
