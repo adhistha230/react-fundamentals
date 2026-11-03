@@ -40,7 +40,7 @@
       "difficulty": "S",
       "teaches": ["hover vs committed state", "radio semantics"],
       "features": ["hover preview", "committed value", "keyboard selectable", "half-stars"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "06-signup-form-validation",

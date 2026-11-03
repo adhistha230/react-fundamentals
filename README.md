@@ -15,6 +15,7 @@ Part of a six-repo set — see also `react-hooks`, `react-api-projects`,
 | 02 | [Tip Calculator](src/projects/02-tip-calculator/) | S | controlled numeric inputs, integer-cent money math |
 | 03 | [Accordion FAQ](src/projects/03-accordion-faq/) | S | conditional rendering, single-open logic, `aria-expanded` |
 | 04 | [Tabs Component](src/projects/04-tabs-component/) | S | index state, roving tabindex, arrow/home/end navigation |
+| 05 | [Star Rating](src/projects/05-star-rating/) | S | hover preview vs committed state, native radio semantics, half steps |
 
 ## Stack
 
