@@ -48,6 +48,16 @@ export default function StarRating() {
   // radio group and selecting in either clears the other.
   const groupName = useId();
 
+  // Committing drops the preview. The two inputs are independent -- pointer and keyboard --
+  // and a stale preview outranks the value it is previewing: arrow off a hovered star and
+  // the readout would keep showing where the mouse is parked while the group reports
+  // something else. On a click it changes nothing, since the half being committed is the
+  // half under the pointer.
+  const commit = (next) => {
+    setValue(next);
+    setPreview(null);
+  };
+
   return (
     <div className={`${card} space-y-6`}>
       {/* The preview is cleared on the fieldset, not on each label. Moving between two
@@ -81,6 +91,11 @@ export default function StarRating() {
                 <span
                   key={starValue}
                   className={`absolute inset-y-0 w-1/2 ${half === 0 ? "left-0" : "right-0"}`}
+                  // On the wrapper rather than the label: the wrapper is the half-star hit
+                  // region, and it is the only node that is an ancestor of both the label
+                  // and its input. Hung off the label instead, a pointer that reaches the
+                  // input directly -- or a test that hovers it -- previews nothing.
+                  onMouseEnter={() => setPreview(starValue)}
                 >
                   <input
                     className={hiddenInput}
@@ -89,15 +104,11 @@ export default function StarRating() {
                     id={`${groupName}-${starValue}`}
                     value={starValue}
                     checked={value === starValue}
-                    onChange={() => setValue(starValue)}
+                    onChange={() => commit(starValue)}
                   />
                   {/* Empty to the eye -- the stars underneath are the visuals. The text is
                       the input's accessible name, so it has to be present, not decorative. */}
-                  <label
-                    htmlFor={`${groupName}-${starValue}`}
-                    className={starHit}
-                    onMouseEnter={() => setPreview(starValue)}
-                  >
+                  <label htmlFor={`${groupName}-${starValue}`} className={starHit}>
                     <span className="sr-only">{labelFor(starValue)}</span>
                   </label>
                 </span>
@@ -113,7 +124,7 @@ export default function StarRating() {
       <div aria-hidden="true">
         <p className={subtle}>{preview === null ? "Your rating" : "Preview"}</p>
         <p className={`${statValue} mt-1`}>
-          {shown}
+          <span>{shown}</span>
           <span className="ml-2 text-base font-normal text-slate-400">of {STARS}</span>
         </p>
       </div>
@@ -125,7 +136,7 @@ export default function StarRating() {
         type="button"
         className={buttonGhost}
         disabled={value === 0}
-        onClick={() => setValue(0)}
+        onClick={() => commit(0)}
       >
         Clear rating
       </button>
