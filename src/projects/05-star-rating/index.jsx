@@ -1,5 +1,14 @@
 import { useId, useState } from "react";
-import { card, hiddenInput, starFill, starHit, starTrack, statValue, subtle } from "../../shared/ui.js";
+import {
+  buttonGhost,
+  card,
+  hiddenInput,
+  starFill,
+  starHit,
+  starTrack,
+  statValue,
+  subtle,
+} from "../../shared/ui.js";
 
 const STARS = 5;
 const STEP = 0.5;
@@ -108,6 +117,18 @@ export default function StarRating() {
           <span className="ml-2 text-base font-normal text-slate-400">of {STARS}</span>
         </p>
       </div>
+
+      {/* Not decoration. Once a radio in a group is checked there is no key that unchecks
+          it -- the arrows only move the selection -- so without this the unrated state is
+          reachable exactly once, before the first click. */}
+      <button
+        type="button"
+        className={buttonGhost}
+        disabled={value === 0}
+        onClick={() => setValue(0)}
+      >
+        Clear rating
+      </button>
     </div>
   );
 }
